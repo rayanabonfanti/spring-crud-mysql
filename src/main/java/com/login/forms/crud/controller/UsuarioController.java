@@ -1,9 +1,7 @@
 package com.login.forms.crud.controller;
 
 import com.login.forms.crud.model.Usuario;
-import com.login.forms.crud.model.dto.AutenticacaoDTO;
 import com.login.forms.crud.model.dto.UsuarioDTO;
-import com.login.forms.crud.model.interfaces.UsuarioInterfaceDTO;
 import com.login.forms.crud.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -70,20 +68,6 @@ public class UsuarioController {
                 return ResponseEntity.status(HttpStatus.OK).body(usuarioSave);
             } else {
                 return ResponseEntity.status(HttpStatus.NO_CONTENT).body("Nao foi possivel cadastrar usuário!");
-            }
-        } catch(Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
-        }
-    }
-
-    @PostMapping(value="/autenticacaoLogin/")
-    public ResponseEntity<?> autenticacaoLogin(@RequestBody AutenticacaoDTO autenticacaoDTO) {
-        try {
-            Usuario usuarioAutenticado = usuarioService.autenticacaoLogin(autenticacaoDTO);
-            if (!Objects.isNull(usuarioAutenticado)) {
-                return ResponseEntity.status(HttpStatus.OK).body(usuarioAutenticado);
-            } else {
-                return ResponseEntity.status(HttpStatus.NO_CONTENT).body("Nao foi possivel autenticar usuário!");
             }
         } catch(Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());

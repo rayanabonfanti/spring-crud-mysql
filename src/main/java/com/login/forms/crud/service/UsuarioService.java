@@ -1,9 +1,7 @@
 package com.login.forms.crud.service;
 
 import com.login.forms.crud.model.Usuario;
-import com.login.forms.crud.model.dto.AutenticacaoDTO;
 import com.login.forms.crud.model.dto.UsuarioDTO;
-import com.login.forms.crud.model.interfaces.UsuarioInterfaceDTO;
 import com.login.forms.crud.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,16 +27,6 @@ public class UsuarioService {
         if (Objects.isNull(existUsuario)) {
             usuarioRepository.save(usuario);
             return usuario;
-        }
-        return null;
-    }
-
-    public Usuario autenticacaoLogin(AutenticacaoDTO autenticacaoDTO){
-        Usuario existUsuario = usuarioRepository.findByUsuarioUserName(autenticacaoDTO.getUsuarioUserName());
-        if (!Objects.isNull(existUsuario)) {
-            if(Objects.equals(existUsuario.getUsuarioPassword(), autenticacaoDTO.getUsuarioPassword())){
-                return existUsuario;
-            }
         }
         return null;
     }
